@@ -29,17 +29,17 @@ class Advice_guide
     /**
      * @ORM\Column(type="string", length=150)
      */
-    private $guide_notation;
+    private $guideNotation;
 
     /**
      * @ORM\Column(type="string", length=150)
      */
-    private $guide_adward_logo;
+    private $guideAdwardLogo;
 
     /**
      * @ORM\Column(type="string", length=150)
      */
-    private $comment_advice;
+    private $commentAdvice;
 
     /**
      * Liaison entre 2 tables unidirectionnelle (depuis les book, on peut récupérer l'auteur).
@@ -69,15 +69,15 @@ class Advice_guide
      */
     public function getGuideNotation()
     {
-        return $this->guide_notation;
+        return $this->guideNotation;
     }
 
     /**
-     * @param mixed $guide_notation
+     * @param mixed $guideNotation
      */
-    public function setGuideNotation($guide_notation)
+    public function setGuideNotation($guideNotation)
     {
-        $this->guide_notation = $guide_notation;
+        $this->guideNotation = $guideNotation;
     }
 
     /**
@@ -85,15 +85,15 @@ class Advice_guide
      */
     public function getGuideAdwardLogo()
     {
-        return $this->guide_adward_logo;
+        return $this->guideAdwardLogo;
     }
 
     /**
-     * @param mixed $guide_adward_logo
+     * @param mixed $guideAdwardLogo
      */
-    public function setGuideAdwardLogo($guide_adward_logo)
+    public function setGuideAdwardLogo($guideAdwardLogo)
     {
-        $this->guide_adward_logo = $guide_adward_logo;
+        $this->guideAdwardLogo = $guideAdwardLogo;
     }
 
     /**
@@ -101,15 +101,15 @@ class Advice_guide
      */
     public function getCommentAdvice()
     {
-        return $this->comment_advice;
+        return $this->commentAdvice;
     }
 
     /**
-     * @param mixed $comment_advice
+     * @param mixed $commentAdvice
      */
-    public function setCommentAdvice($comment_advice)
+    public function setCommentAdvice($commentAdvice)
     {
-        $this->comment_advice = $comment_advice;
+        $this->commentAdvice = $commentAdvice;
     }
 
     /**
