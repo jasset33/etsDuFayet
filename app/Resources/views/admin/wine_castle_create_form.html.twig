@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('assets/css/style_form.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Events Form</title>
+</head>
+<body>
+    <div class="formulaire">
+        {{ form_start(eventsFormView) }}
+        {#----   Voir les propriétés form-group de Bootstrap   ----#}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    {{ form_label(eventsFormView.alias) }}
+                    {{ form_errors(eventsFormView.alias) }}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(eventsFormView.alias, {'attr': {'class':'widget_all'}} ) }}
+                </div>
+            </div>
+        </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        {{ form_label(eventsFormView.display) }}
+                        {{ form_errors(eventsFormView.display) }}
+                    </div>
+                    <div class="col-md-10">
+                        {{ form_widget(eventsFormView.display, {'attr': {'class':'widget_all'}} ) }}
+                        <span>cochez pour rendre visible sur le site</span>
+                    </div>
+                </div>
+            </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2">
+                            {{ form_label(eventsFormView.startingDate) }}
+                            {{ form_errors(eventsFormView.startingDate) }}
+                        </div>
+                        <div class="col-md-10">
+                            {{ form_widget(eventsFormView.startingDate, {'attr': {'class':'widget_date'}} ) }}
+                        </div>
+                    </div>
+                </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    {{ form_label(eventsFormView.endDate) }}
+                    {{ form_errors(eventsFormView.endDate) }}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(eventsFormView.endDate, {'attr': {'class':'widget_date'}} ) }}
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    {{ form_label(eventsFormView.address1Events) }}
+                    {{ form_errors(eventsFormView.address1Events) }}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(eventsFormView.address1Events, {'attr': {'class':'widget_all'}} ) }}
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    {{ form_label(eventsFormView.address2Events) }}
+                    {{ form_errors(eventsFormView.address2Events) }}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(eventsFormView.address2Events, {'attr': {'class':'widget_all'}} ) }}
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    {{ form_label(eventsFormView.cpEvents) }}
+                    {{ form_errors(eventsFormView.cpEvents) }}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(eventsFormView.cpEvents, {'attr': {'class':'widget_all'}} ) }}
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    {{ form_label(eventsFormView.townEvents) }}
+                    {{ form_errors(eventsFormView.townEvents) }}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(eventsFormView.townEvents, {'attr': {'class':'widget_all'}} ) }}
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    {{ form_label(eventsFormView.phoneEvents) }}
+                    {{ form_errors(eventsFormView.phoneEvents) }}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(eventsFormView.phoneEvents, {'attr': {'class':'widget_all'}} ) }}
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    {{ form_label(eventsFormView.mailEvents) }}
+                    {{ form_errors(eventsFormView.mailEvents) }}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(eventsFormView.mailEvents, {'attr': {'class':'widget_all'}} ) }}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 form-group">
+                    {{ form_label(eventsFormView.commentEvents, 'commentaire') }}
+                    {{ form_errors(eventsFormView.commentEvents) }}
+                </div>
+                <div class="col-md-10">
+                    {{ form_widget(eventsFormView.commentEvents, {'attr': {'class':'widget_all widget_textarea'}} ) }}
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-end mr-1">
+                <div class="">
+                    {{ form_row(eventsFormView.submit,
+                        {'attr': {'class':'btn btn-dark ',
+                            'aria-pressed':'true'}
+                        }
+                    ) }}
+                    {#----   dans bootstrap, j'avais utilisé la class data-toggle:button qui m'a bloqué l'envoi du formulaire. selon denis,
+                    il attendait l'ouverture d'une fenetre pop-up   ----#}
+                </div>
+            </div>
+        </div>
+        {{ form_end(eventsFormView) }}
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+</html>
