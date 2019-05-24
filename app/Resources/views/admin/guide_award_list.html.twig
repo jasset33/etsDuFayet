@@ -1,0 +1,146 @@
+{% extends "baseAdmin.html.twig" %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block title %}
+    Vignobles Admin
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div>
+
+        {#    Bouton créer nouvel evenement#}
+
+        <a href="{{ path('admin_castle_create_form') }}">
+            <input  class="boutonNewEntry"
+                    type="button"
+                    value="Nouveau château">
+        </a>
+
+    </div>
+
+
+
+    <div class="main_events">
+        {#            Liste de tous les châteaux du propriétaire#}
+        {#                           {{ dump(castles) }}#}
+        <article class="eventsArticle" >
+            {% for castle in castles %}
+                {#            {{ dump(event.startingDate) }}#}
+                {#        différents type d'affichage en foncion des éléments indiqués par l'admin#}
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto h4 border">
+                            Domaine
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto h4 border">
+                            {{ castle.nameCastle }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            Visibilité
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+                            {% if castle.display == 0 %}
+                                <span class="cercle_offline"></span>
+                                <span class="txt_visibility">Offline</span>
+                            {% else %}
+                                <span class="cercle_online"></span>
+                                <span class="txt_visibility">Online</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            Contact commercial
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+                            {{ castle.contactCommercial }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            adresse ligne 1
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+                            {{ castle.address1Castle }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            adresse ligne 2
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+                            {{ castle.address2Castle }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            CP et Ville
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+                            {{ castle.cpCastle }} {{ castle.townCastle }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            téléphone
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+                            {{ castle.phoneCastle }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            Email
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+                            {{ castle.mailCastle }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            AOC
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+                            {{ castle.aocCastle }}
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                   <span class="boutonUnderImg">
+                       <a href="{{ path('admin_castle_update_visible', {'id':castle.id}) }}">
+                           <input class="btn btn-success"
+                                  type="button"
+                                  value="Mettre online">
+                       </a>
+                   </span>
+                    <span class="boutonUnderImg">
+                       <a href="{{ path('admin_castle_update_invisible', {'id':castle.id}) }}">
+                           <input class="btn btn-secondary"
+                                  type="button"
+                                  value="Mettre offline">
+                       </a>
+                   </span>
+                    <span class="boutonUnderImg">
+                       <a href="{{ path('admin_castle_update_form', {'id':castle.id}) }}">
+                           <input class="btn btn-warning"
+                                  type="button"
+                                  value="Modifier">
+                       </a>
+                   </span>
+                </div>
+                -----------------------
+            {% endfor %}
+        </article>
+    </div>
+
+{% endblock %}

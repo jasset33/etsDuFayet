@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 /*chemin permettant d'identifier cette classe et permet de l'utiliser plus tard*/
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 /* utilisation dans le fichier de la classe mapping
 'as' permet d'utiliser @ORM au lieu d'@Mapping, le nom de la classe*/
@@ -16,8 +17,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 
 /* la classe article est une entité qui vient travailler avec la table de la bdd identifié Advice_guide (son miroir)*/
-class Advice_guide
+class AdviceGuide
 {
+    public function __construct()
+    {
+        $this->year = new ArrayCollection();
+    }
+
     /**
      * Ce bout de code sera toujours le même pour chaque entité
      * @ORM\Column(type="integer")
@@ -25,6 +31,16 @@ class Advice_guide
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $display = true;
+
+    /**
+     * @ORM\OneToOne(targetEntity=year::class)
+     */
+    private $year;
 
     /**
      * @ORM\Column(type="string", length=150)
@@ -42,9 +58,7 @@ class Advice_guide
     private $commentAdvice;
 
     /**
-     * Liaison entre 2 tables unidirectionnelle (depuis les book, on peut récupérer l'auteur).
-     * Many to one parce qu'un book peut avoir plusieurs auteurs
-     * @ORM\OneToOne(targetEntity="Guide")
+     * @ORM\ManyToOne(targetEntity=Guide::class)
      */
     private $guide;
 
@@ -62,6 +76,38 @@ class Advice_guide
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getYear()
+    {
+        return $this->year;
+    }
+
+    /**
+     * @param mixed $year
+     */
+    public function setYear($year)
+    {
+        $this->year = $year;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDisplay()
+    {
+        return $this->display;
+    }
+
+    /**
+     * @param mixed $display
+     */
+    public function setDisplay($display)
+    {
+        $this->display = $display;
     }
 
     /**
