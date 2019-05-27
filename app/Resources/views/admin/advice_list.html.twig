@@ -1,0 +1,145 @@
+{% extends "baseAdmin.html.twig" %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block title %}
+    Récompenses Admin
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div>
+
+        {#    Bouton créer nouvel evenement#}
+
+        <a href="{{ path('admin_guide_award_create_form') }}">
+            <input  class="boutonNewEntry"
+                    type="button"
+                    value="Nouveau">
+        </a>
+
+    </div>
+
+
+
+    <div class="main_events">
+        {#            Liste de toutes les notations #}
+{#                                 {{ dump(guideAwards) }}#}
+        <article class="eventsArticle" >
+            {% for guideAward in guideAwards %}
+                     <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-4 mb-0 pt-auto pb-auto border">
+                                Domaine
+                            </div>
+                            <div class="col-8 mb-0 pt-auto pb-auto border">
+{#                               {{ dump(guideAward.wineCastle) }}#}
+                            {{ guideAward.wineCastle.nameCastle }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            Millésime
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+{#                            {{ dump(guideAward.years.year) }}#}
+                            {{ guideAward.years.year }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            Visibilité
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+                            {% if guideAward.display == 0 %}
+                                <span class="cercle_offline"></span>
+                                <span class="txt_visibility">Offline</span>
+                            {% else %}
+                                <span class="cercle_online"></span>
+                                <span class="txt_visibility">Online</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            Réf guide
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+{#                            {{ dump(guideAward.guide.guideName) }}#}
+                            {{ guideAward.guide.guideName }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            Notation
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+                            {{ guideAward.guideNotation }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto h4 border">
+                            Image
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto h4 border">
+                            {#                           {{ guide.guideAwardLogo }}#}
+                            {% if guideAward.guideAwardLogo == NULL %}
+                                aucune image enregistrée
+                            {% else %}
+                                <img class="thumbnail.guideLogo" src="{{ asset('assets/img/guide/award/'~guideAward.guideAwardLogo) }}" alt="photo {#{{ guideAward.guideName }}#}">
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            Commentaire
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+                            {{ guideAward.commentAward }}
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                   <span class="boutonUnderImg">
+                       <a href="{{ path('admin_guide_award_update_visible', {'id':guideAward.id}) }}">
+                           <input class="btn btn-success"
+                                  type="button"
+                                  value="Mettre online">
+                       </a>
+                   </span>
+                    <span class="boutonUnderImg">
+                       <a href="{{ path('admin_guide_award_update_invisible', {'id':guideAward.id}) }}">
+                           <input class="btn btn-secondary"
+                                  type="button"
+                                  value="Mettre offline">
+                       </a>
+                   </span>
+                    <span class="boutonUnderImg">
+                       <a href="{{ path('admin_guide_award_update_form', {'id':guideAward.id}) }}">
+                           <input class="btn btn-warning"
+                                  type="button"
+                                  value="Modifier">
+                       </a>
+                   </span>
+                    <span class="boutonUnderImg">
+                            <a href="{{ path('admin_guide_award_delete', {'id':guideAward.id}) }}">
+                                <input class="btn btn-danger"
+                                       type="button"
+                                       value="Effacer">
+                            </a>
+                    </span>
+
+                </div>
+                -----------------------
+            {% endfor %}
+        </article>
+    </div>
+
+{% endblock %}
