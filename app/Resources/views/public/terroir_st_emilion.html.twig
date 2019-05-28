@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Accueil
+{% endblock %}
+
+{%  block background_img %}
+
+{% endblock %}
+
+{% block event %}
+{% endblock %}
+
+{% block content %}
+    <div class="homePage_article">
+        <div class="homePage_article_img_even">
+            <a href="{{ path('user_famille') }}">
+                <img class="homePage_article_img" src="{{ asset('assets/img/webSite/famille.jpg') }}" alt="photo de la famille">
+            </a>
+        </div>
+        <div class="homePage_article_text famille_text">
+            <h2>Un blason, une famille, une histoire....</h2>
+            <br>
+            <p>Depuis maintenant 3 générations, la famille de La Tour du Fayet gère un vignoble dans trois appellations différentes. C’est M Louis de La Tour du Fayet, grand-père des actuels propriétaires qui a acquis le château Gueyrot en AOC Saint-Emilion Grand Cru et le château Beau Site de La Tour en AOC Fronsac.</p>
+            <p>Puis ces fils ont développé le commerce et les propriétés. C’est ainsi que M Jacques de La Tour du Fayet a acquis le château Canset de La Tour en Saint Emilion Grand cru et le Domaine du Fayet en AOC Bordeaux.</p>
+        </div>
+    </div>
+
+{% endblock %}

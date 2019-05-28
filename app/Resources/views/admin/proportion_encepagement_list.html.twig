@@ -1,0 +1,114 @@
+{% extends "baseAdmin.html.twig" %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block title %}
+    Conseils Admin
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div>
+
+        {#    Bouton créer nouveau conseil#}
+
+        <a href="{{ path('admin_advice_create_form') }}">
+            <input  class="boutonNewEntry"
+                    type="button"
+                    value="Nouveau">
+        </a>
+
+    </div>
+
+
+
+    <div class="main_events">
+        {#            Liste de toutes les notations #}
+{#                                 {{ dump(advices) }}#}
+        <article class="eventsArticle" >
+            {% for advice in advices %}
+                     <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-4 mb-0 pt-auto pb-auto border">
+                                Domaine
+                            </div>
+                            <div class="col-8 mb-0 pt-auto pb-auto border">
+{#                               {{ dump(advice.wineCastle) }}#}
+                            {{ advice.wineCastle.nameCastle }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            Millésime
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+{#                            {{ dump(advice.years.year) }}#}
+                            {{ advice.years.year }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            Visibilité
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+                            {% if advice.display == 0 %}
+                                <span class="cercle_offline"></span>
+                                <span class="txt_visibility">Offline</span>
+                            {% else %}
+                                <span class="cercle_online"></span>
+                                <span class="txt_visibility">Online</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-0 pt-auto pb-auto border">
+                            Conseil
+                        </div>
+                        <div class="col-8 mb-0 pt-auto pb-auto border">
+                            {{ advice.advice }}
+                        </div>
+                    </div>
+                <div class="">
+                   <span class="boutonUnderImg">
+                       <a href="{{ path('admin_advice_update_visible', {'id':advice.id}) }}">
+                           <input class="btn btn-success"
+                                  type="button"
+                                  value="Mettre online">
+                       </a>
+                   </span>
+                    <span class="boutonUnderImg">
+                       <a href="{{ path('admin_advice_update_invisible', {'id':advice.id}) }}">
+                           <input class="btn btn-secondary"
+                                  type="button"
+                                  value="Mettre offline">
+                       </a>
+                   </span>
+                    <span class="boutonUnderImg">
+                       <a href="{{ path('admin_advice_update_form', {'id':advice.id}) }}">
+                           <input class="btn btn-warning"
+                                  type="button"
+                                  value="Modifier">
+                       </a>
+                   </span>
+                    <span class="boutonUnderImg">
+                            <a href="{{ path('admin_advice_delete', {'id':advice.id}) }}">
+                                <input class="btn btn-danger"
+                                       type="button"
+                                       value="Effacer">
+                            </a>
+                    </span>
+
+                </div>
+                -----------------------
+            {% endfor %}
+        </article>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Accueil
+{% endblock %}
+
+{%  block background_img %}
+
+{% endblock %}
+
+{% block event %}
+    <div class="main_events">
+    {#            Evenemets à afficher du propriétaire#}
+    {#           {{ dump(events) }}#}
+        <article class="eventsArticle" >
+            {% for event in events %}
+                {#                    {{ dump(event.startingDate) }}#}
+        {#        différents type d'affichage en foncion des éléments indiqués par l'admin#}
+                {% if  event.address2events  is not null and  event.commentEvents  is not null %}
+                    <div>
+                        <h2>{{ event.alias }}<span class="h5"> ({{ event.address1events }}; {{ event.address2events }}; {{ event.townEvents }})</span></h2>
+                        <p>
+                            Nous y serons présent du {{ event.startingDate|date("d/m/Y") }} au {{ event.endDate|date("d/m/Y") }}
+                        </p>
+                        <p>
+                            {{ event.commentEvents }}
+                        </p>
+                    </div>
+
+                {% elseif  event.address1events  is not null and  event.commentEvents  is not null %}
+                    <div>
+                        <h2>{{ event.alias }}<span class="h5"> ({{ event.address1events }}; {{ event.townEvents }})</span></h2>
+                        <p>
+                            Nous y serons présent du {{ event.startingDate|date("d/m/Y") }} au {{ event.endDate|date("d/m/Y") }}
+                        </p>
+                        <p>
+                            {{ event.commentEvents }}
+                        </p>
+                    </div>
+
+                {% elseif  event.address1events  is not null %}
+                    <div>
+                        <h2>{{ event.alias }}<span class="h5"> ({{ event.address1events }}; {{ event.townEvents }})</span></h2>
+                        <p>
+                            Nous y serons présent du {{ event.startingDate|date("d/m/Y") }} au {{ event.endDate|date("d/m/Y") }}
+                        </p>
+                    </div>
+
+                {% elseif  event.commentEvents  is not null %}
+                    <div>
+                        <h2>{{ event.alias }}</h2>
+                        <p>
+                            Nous y serons présent du {{ event.startingDate|date("d/m/Y") }} au {{ event.endDate|date("d/m/Y") }}
+                        </p>
+                        <p>
+                            {{ event.commentEvents }}
+                        </p>
+                    </div>
+
+                {% else %}
+                    <div>
+                        <h2>{{ event.alias }}</h2>
+                        <p>
+                            Nous y serons présent du {{ event.startingDate|date("d/m/Y") }} au {{ event.endDate|date("d/m/Y") }}
+                        </p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </article>
+    </div>
+{% endblock %}
+{% block content %}
+    <div class="homePage_article">
+        <div class="homePage_article_img_even">
+            <a href="#une famille">
+                <img class="homePage_article_img" src="{{ asset('assets/img/webSite/photo_maison.jpg') }}" alt="photo de la propriété">
+            </a>
+        </div>
+        <div class="homePage_article_text">
+{#            <p>Une histoire familiale</p>#}
+            <h2>Un blason, une famille, une histoire....</h2>
+{#            <p>Depuis maintenant 3 générations, la famille de La Tour du Fayet gère un vignoble dans trois appellations différentes. C’est M Louis de La Tour du Fayet, grand-père des actuels propriétaires qui a acquis le château Gueyrot en AOC Saint-Emilion Grand Cru et le château Beau Site de La Tour en AOC Fronsac.</p>#}
+{#            <p>Puis ces fils ont développé le commerce et les propriétés. C’est ainsi que M Jacques de La Tour du Fayet a acquis le château Canset de La Tour en Saint Emilion Grand cru et le Domaine du Fayet en AOC Bordeaux.</p>#}
+        </div>
+    </div>
+    <div class="homePage_article">
+        <div class="homePage_article_text">
+            <h2>Nos terroirs</h2>{#            <p>Puis ces fils ont développé le commerce et les propriétés. C’est ainsi que M Jacques de La Tour du Fayet a acquis le château Canset de La Tour en Saint Emilion Grand cru et le Domaine du Fayet en AOC Bordeaux.</p>#}
+        </div>
+        <div class="homePage_article_img_odd">
+            <a href="#les terroirs">
+                <img class="homePage_article_img" src="{{ asset('assets/img/webSite/bordeaux-superieur-carte-appellations-new.png') }}" alt="Carte des appellations du Bordeaux sup.">
+            </a>
+        </div>
+    </div>
+    <div class="homePage_article">
+        <div class="homePage_article_img_even">
+            <a href="#dégustation et conseils du vigneron">
+                <img class="homePage_article_img" src="{{ asset('assets/img/webSite/tasting_wine.png') }}" alt="Dégustation et conseil du vigneron">
+            </a>
+        </div>
+        <div class="homePage_article_text">
+            <h2>Dégustation et conseils du vigneron</h2>
+        </div>
+    </div>
+
+{% endblock %}
